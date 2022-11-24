@@ -1,0 +1,91 @@
+.content {
+    background-color: #262626;
+}
+
+.content form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+
+    margin-top: 1.4rem;
+    margin-bottom: 6.4rem;
+
+}
+
+.inputTasks {
+    width: 63.8rem;
+    height: 5.4rem;
+
+    padding: 1.6rem;
+
+    border-radius: 8px;
+    border: 1px solid #0D0D0D;
+
+    background-color: #262626;
+
+    color: #FFF;
+
+}
+
+.buttonPlus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    color: #FFF;
+    background: #1E6F9F;
+    border-radius: 8px;
+
+    padding: 1.6rem;
+
+    border: none;
+}
+
+.tasks {
+    max-width: min(90rem, 100%);
+    margin-inline: auto;
+}
+
+.inforTasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.textInforOne {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #4EA8DE;
+}
+
+.textInforOne span {
+    color: white;
+    margin-left: 0.5rem;
+    background-color: #333333;
+    padding-inline: 0.8rem;
+    padding-block: 0.2rem;
+    border-radius: 999px;
+}
+
+.textInforTwo {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #8284FA;
+}
+    
+.textInforTwo span {
+    color: white;
+    margin-left: 0.5rem;
+    background-color: #333333;
+    padding-inline: 0.8rem;
+    padding-block: 0.2rem;
+    border-radius: 999px;
+}
+

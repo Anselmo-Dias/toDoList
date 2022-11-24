@@ -1,0 +1,26 @@
+.notHaveTasks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2.4rem;
+
+    padding: 6.4rem 2.4rem;
+    gap: 1.6rem;
+
+    color: #FFF;
+
+    border-top: 1px solid #808080;
+
+    border-radius: 10px;
+}
+
+.notHaveTasks > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1.7;
+
+    opacity: 0.4;
+}
+
