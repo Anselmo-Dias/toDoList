@@ -24,7 +24,7 @@ export function Task({content, onDeleteTask,onDecrement , comparisonQuantityTask
     function handleDeleteTask() {
         {onDeleteTask(content)}
         {onDecrement()}
-        {comparisonQuantityTasks(false)}
+        {differentStyles === CheckImg ? comparisonQuantityTasks(false) : null}
     }
 
     function handleNewStyleThisCheckImgTask() {
