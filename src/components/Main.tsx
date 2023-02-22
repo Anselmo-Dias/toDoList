@@ -1,20 +1,22 @@
 import styles from "./Main.module.css";
 
 import plusImg from '../assets/plus.svg'
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Task } from "./Task";
 import { Warning } from "./Warning";
 
+export interface typeTasksProps {
+    id: number
+    content: string
+}
 
 export function Main()  {
 
-    const [tasks, setTasks] = useState([
-        'Integaer urna interdum massa liro auasaaaasadsadasdasdasdadadadadaasdsadactorauasdasds vel sed fames integerasdadadsadaddasdsadaddasdasdadsaddasdadasdasdsadasasd.',  
+    const [tasks, setTasks] = useState<typeTasksProps[]>([
+        {id: Math.random() * 21, content: 'Adicione suas tarefas'},
     ])
 
     const [newTasks, setNewTasks] = useState('');
-
-    const [totalTasks, setTotalTasks] = useState(1);
 
     const [comparisonQuantity, setComparisonQuantity] = useState(0);
 
@@ -23,34 +25,18 @@ export function Main()  {
     function handleCreateNewTask(event : FormEvent) {
         event.preventDefault()
 
- 
-        setTasks([...tasks, newTasks])
+        const getNewTask = {id: Math.random() * 21, content: newTasks}
+        
+        setTasks(state => [...state, getNewTask])
         setNewTasks('')
     }
 
-    function handleNewTasksChange(event : ChangeEvent<HTMLInputElement>) {
-        event.target.setCustomValidity('')
-        setNewTasks(event.target.value);
-    }
-
-    function deleteTask(onDeleteTaskOne: string) {
-        const tasksWithoutDeletedOne = tasks.filter(task => {
-            return task !== onDeleteTaskOne
-        })
+    function deleteTask(taskOfDelete: typeTasksProps | undefined) {
+        const tasksWithoutDeletedOne = tasks.filter(item => {
+                return item.id !== taskOfDelete?.id
+            })
 
         setTasks(tasksWithoutDeletedOne)
-    }
-
-    function incrementCountInTotaltasks() {
-        setTotalTasks((state) => {
-            return state + 1
-        })
-    }
-
-    function DecrementCountInTotalTasks() {
-        setTotalTasks((state) => {
-            return state - 1
-        })
     }
 
     function comparisonQuantityTasks( status : boolean) {
@@ -66,7 +52,7 @@ export function Main()  {
         
     }
     
-    const disblaedButton = newTasks.length === 0
+    const disabledButton = newTasks.length === 0
         
     
 
@@ -76,11 +62,12 @@ export function Main()  {
                 <input 
                     type="text" className={styles.inputTasks} 
                     placeholder="Adicione uma nova tarefa" 
-                    onChange={handleNewTasksChange}
+                    value={newTasks}
+                    onChange={e => setNewTasks(e.target.value)}
                     maxLength={70}
                 />
 
-                <button type="submit" className={styles.buttonPlus} disabled={disblaedButton} onClick={incrementCountInTotaltasks}>
+                <button type="submit" className={styles.buttonPlus} disabled={disabledButton}>
                     Criar
                     <img src={plusImg} alt="icone de adicionar" />
                 </button>
@@ -88,18 +75,18 @@ export function Main()  {
 
             <section className={styles.tasks}>
                 <div className={styles.inforTasks}>
-                    <p className={styles.textInforOne}>Tarefas criadas <span>{totalTasks}</span></p>
-                    <p className={styles.textInforTwo}>Concluidas <span>{comparisonQuantity} de {totalTasks}</span></p>
+                    <p className={styles.textInforOne}>Tarefas criadas <span>{tasks.length}</span></p>
+                    <p className={styles.textInforTwo}>Concluidas <span>{comparisonQuantity} de {tasks.length}</span></p>
                 </div>
 
-                {totalTasks === 0 ? <Warning /> : <div className={styles.taskList}>
+                {tasks.length === 0 ? <Warning /> : <div className={styles.taskList}>
                     {tasks.map(item => {
                         return (
                            <Task 
-                                key={item}
-                                content={item}
+                                key={item.id}
+                                content={item.content}
+                                tasks={tasks}
                                 onDeleteTask={deleteTask} 
-                                onDecrement={DecrementCountInTotalTasks}
                                 comparisonQuantityTasks={comparisonQuantityTasks}
                            />
                         )
